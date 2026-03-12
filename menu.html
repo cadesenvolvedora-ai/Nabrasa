@@ -1,0 +1,1730 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title> NaBrasa </title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+</head>
+
+
+<body>
+<svg style="display: none;">
+  <symbol id="meu-carrinho" viewBox="0 0 456 456">
+    <path d="M345.6 338.86a53.25 53.25 0 1 0 0 106.5 53.25 53.25 0 0 0 0-106.5zM439.3 84.91h-326.6l-5.12-34.3A46.5 46.5 0 0 0 61.95 10.67H20.48a20.48 20.48 0 0 0 0 40.96h41.47c2.56 0 4.6 2 5.12 4.6l31.74 216.07a55.94 55.94 0 0 0 55.3 47.61h213a55.9 55.9 0 0 0 55.3-45.05l33.28-166.4c2.56-12.8-4.6-23.55-15.87-25.6zM215.04 389.55a52.22 52.22 0 1 0-104 4.15 52.22 52.22 0 1 0 104-4.15z"/>
+  </symbol>
+</svg>
+  <header class="header_section">
+    <div class="container-fluid logo-bg">
+          <div class="logo-center">
+          <img src="images\logo2026.png" id="logo" alt="Logo">
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <section class="hero_section">
+  <div class="container">
+    <div class="hero_content">
+      <h1>O Ponto da Picanha</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore.
+      </p>
+      <a href="#menu" class="btn hero_btn">Ver Cardápio</a>
+    </div>
+  </div>
+</section>
+
+<button class="cart-float-btn" onclick="toggleCart()">
+  <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 456.029 456.029" style="enable-background:new 0 0 456.029 456.029;" xml:space="preserve">
+                        <g>
+                          <g>
+                            <path d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
+                         c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
+                         C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
+                         c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
+                         C457.728,97.71,450.56,86.958,439.296,84.91z" />
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
+                         c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
+                          </g>
+                        </g>
+                      </svg>
+  <span id="cartCount">0</span>
+</button>
+  
+<div id="cartDrawer" class="cart-drawer">
+  <div class="cart-header">
+    <h4>🛒 Carrinho</h4>
+    <button class="fecharCarrinho" onclick="toggleCart()">✕</button>
+  </div>
+
+  <div id="cartItems"></div>
+  <div id="cart-Total">
+  <strong>Total: <span id="valorTotal">0.00</span></strong>
+  </div>
+  <input type="text" id="clienteNome" placeholder="Seu nome">
+
+<!-- TIPO DE PEDIDO -->
+<div class="tipo-entrega">
+  <label>
+    <input type="radio" name="tipoPedido" value="entregar">
+    Entregar pedido
+  </label>
+  <div class="entrega-aviso" id="entregaAviso">
+  * Entrega R$: 10,00 em dias de chuva R$: 12,00
+</div>
+
+  <label>
+    <input type="radio" name="tipoPedido" value="retirar">
+    Retirar pedido
+  </label>
+</div>
+
+<!-- ENDEREÇO (começa escondido) -->
+<div id="enderecoArea" style="display:none;">
+  <input type="text" id="clienteEndereco" placeholder="Endereço">
+</div>
+
+  <div class="pagamento">
+  <h6>Forma de pagamento</h6>
+
+  <div class="dropdown-pagamento">
+    <button type="button" class="dropdown-btn" id="pagamentoSelecionado">
+      Selecione a forma de pagamento
+    </button>
+
+    <ul class="dropdown-list">
+      <li data-value="Débito">Débito</li>
+      <li data-value="Crédito">Crédito</li>
+      <li data-value="Dinheiro">Dinheiro</li>
+      <li data-value="Pix na maquininha">Pix na maquininha</li>
+      <li data-value="Pix">Pix</li>
+      <li data-value="Vale Alimentação">Vale Alimentação</li>
+    </ul>
+  </div>
+</div>
+
+<div id="valeAviso" class="vale-aviso">
+  *Não aceitamos Alelo e será aplicado aumento de 10% (taxa) no pedido.
+</div>
+
+<div class="pix-aviso" id="pixAviso">
+  *Mandar comprovante de pagamento no WhatsApp
+</div>
+
+<div class="troco-area" id="trocoArea">
+  <label for="trocoValor">Troco para R$</label>
+  <input
+    type="number"
+    id="trocoValor"
+    placeholder="Ex: 50,00"
+    min="0"
+    step="0.01"
+  />
+</div>
+
+
+  <button class="btn btn-success mt-2" onclick="enviarPedido()">
+    Enviar pedido no WhatsApp
+  </button>
+</div>
+
+
+    <!-- food section -->
+
+  <section class="food_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+      Cardápio
+        </h2>
+      </div>
+
+      <div class="filters-content">
+        <div class="row grid">
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Espetos">
+              <div>
+
+              <div class="img-box carousel">
+                <img src="images/jantar.png" class="carousel-img active"
+                    data-subtitle="Contra Filé"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 12,00">
+
+                <img src="images/jantar.png" class="carousel-img"
+                    
+                    data-subtitle="Franbacon"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 12,00">
+                
+                <img src="images/espeto-picanha.jpeg" class="carousel-img"
+                      
+                      data-subtitle="Picanha"
+                      data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                      data-price="R$: 30,00">
+
+                <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Linguiça"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 12,00">
+
+                <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Linguiça com pimenta"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 12,00">
+
+                <img src="images/coração.png" class="carousel-img"
+                    
+                    data-subtitle="Coração"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 14,00">
+
+                <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Cafta"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 14,00">
+
+                <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Cupim Maturado"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 18,00">
+
+                  <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Queijo Provolone"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 15,00">
+
+                  <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Pão de Alho"
+                    data-desc="Acompanha: farinha temperada, mandioca e molho da casa."
+                    data-price="R$: 10,00">
+
+                  <img src="images/vinagrete.png" class="carousel-img"
+                    
+                    data-subtitle="Adicional de Vinagrete"
+                    data-desc=""
+                    data-price="R$: 3,00">
+              
+                <div class="carousel-dots"></div> 
+            
+              </div>
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+
+              <div class="qty-box">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-value">1</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+              <a href="#" class="add-cart">
+                <svg width="20" height="20" fill="white">
+                  <use xlink:href="#meu-carrinho"></use>
+                </svg>
+              </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Jantar">
+              <div>
+
+              <div class="img-box carousel">
+                <img src="images/jantar.png" class="carousel-img active"
+                    data-subtitle="Contra Filé"
+                    data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                    data-price="R$: 28,00">
+
+                <img src="images/jantar.png" class="carousel-img"
+                    
+                    data-subtitle="Franbacon"
+                    data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                    data-price="R$: 28,00">
+                
+                    <img src="images/jantar.png" class="carousel-img"
+                    
+                    data-subtitle="Barrigada"
+                    data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                    data-price="R$: 28,00">
+                
+                <img src="images/espeto-picanha.jpeg" class="carousel-img"
+                      
+                      data-subtitle="Linguiça"
+                      data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                      data-price="R$: 28,00">
+
+                <img src="images/espeto-picanha.jpeg" class="carousel-img"
+                      
+                      data-subtitle="Linguiça com pimenta"
+                      data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                      data-price="R$: 28,00">
+
+                <img src="images/coracaoj.png" class="carousel-img"
+                    
+                    data-subtitle="Coração"
+                    data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                    data-price="R$: 30,00">
+
+                <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Cafta"
+                    data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                    data-price="R$: 30,00">
+
+                <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Queijo Provolone"
+                    data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                    data-price="R$: 30,00">
+              
+                <img src="images/teste.jpeg" class="carousel-img"
+                    
+                    data-subtitle="Picanha"
+                    data-desc="Espeto, arroz, tropeiro, vinagrete mandioca."
+                    data-price="R$: 30,00">
+
+                <div class="carousel-dots"></div> 
+            
+              </div>
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+
+              <div class="qty-box">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-value">1</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+              <a href="#" class="add-cart">
+                <svg width="20" height="20" fill="white">
+                  <use xlink:href="#meu-carrinho"></use>
+                </svg>
+              </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Porções">
+              <div>
+
+              <div class="img-box carousel">
+                <img src="images/tIilapia-removebg-preview.png" class="carousel-img active"
+                    data-subtitle="Tilápia com Batata Saute"
+                    data-desc="500g de tilápia, 150g de batata saute."
+                    data-price="R$: 65,00">
+
+                <img src="images/kibecomqueijo.png" class="carousel-img"
+                    
+                    data-subtitle="Kibe com Queijo"
+                    data-desc="400g de kibe com queijo."
+                    data-price="R$: 28,00">
+                
+                <img src="images/porçãopicanha.png" class="carousel-img"
+                      
+                      data-subtitle="Picanha na Pedra"
+                      data-desc="500g de picanha, 200g de mandioca na manteiga e 400g de batata com queijo e bacon."
+                      data-price="R$: 129,00">
+
+                <img src="images/batatacompleta.png" class="carousel-img"
+                    
+                    data-subtitle="Batata Completa"
+                    data-desc="500g de batata frita com bacon, cheddar ou mussarela."
+                    data-price="R$: 35,00">
+
+                <img src="images/batata.png" class="carousel-img"
+                    
+                    data-subtitle="Batata Simples"
+                    data-desc="500g de batata frita."
+                    data-price="R$: 25,00">
+              
+                <div class="carousel-dots"></div> 
+            
+              </div>
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+
+              <div class="qty-box">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-value">1</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+              <a href="#" class="add-cart">
+                <svg width="20" height="20" fill="white">
+                  <use xlink:href="#meu-carrinho"></use>
+                </svg>
+              </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Macarrão na chapa">
+              <div>
+
+              <div class="img-box carousel macarrao">
+                <img src="images/macarraonachapa.png" class="carousel-img active macarrao-img"
+                  data-subtitle="Serve uma pessoa"
+                  data-desc="200g maminha ao molho da casa, arroz e batata frita."
+                  data-price="R$: 28,00">
+              <div class="carousel-dots"></div>
+              </div>
+
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+
+              <div class="qty-box">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-value">1</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+             <a href="#" class="add-cart">
+                <svg width="20" height="20" fill="white">
+                  <use xlink:href="#meu-carrinho"></use>
+                </svg>
+              </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Monte seu prato">
+              <div>
+
+             <div class="img-box carousel monte-prato">
+              <img src="images/monteseuprato1.png" class="carousel-img active monte-prato-img"
+                data-subtitle="Serve uma pessoa"
+                data-desc="200g maminha ao molho da casa, arroz e batata frita."
+                data-price="">
+              <div class="carousel-dots"></div>
+            </div>
+
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+               
+              <button class="btn-montar" onclick="abrirMontePrato()">
+               Montar Prato
+              </button>
+              
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Prato da casa">
+              <div>
+
+              <div class="img-box carousel">
+                <img src="images/pratodacasa.png" class="carousel-img active"
+                    data-subtitle="Serve uma pessoa"
+                    data-desc="200g maminha ao molho da casa, arroz e batata frita."
+                    data-price="R$: 39,99">
+
+              
+                   <div class="carousel-dots"></div>            
+              </div>
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+
+              <div class="qty-box">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-value">1</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+              <a href="#" class="add-cart">
+                <svg width="20" height="20" fill="white">
+                  <use xlink:href="#meu-carrinho"></use>
+                </svg>
+              </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Caldo Nabrasa">
+              <div>
+
+              <div class="img-box carousel">
+                <img src="images/caldo-removebg-preview.png" class="carousel-img active"
+                    data-subtitle="Caldo de frango"
+                    data-desc="Acompanha: torresmo, torrada, queijo e cebolinha."
+                    data-price="R$: 24,99">
+
+                <img src="images/caldo-removebg-preview.png" class="carousel-img active"
+                    data-subtitle="Caldo de feijão"
+                    data-desc="Acompanha: torresmo, torrada, queijo e cebolinha."
+                    data-price="R$: 24,99">
+
+                <img src="images/caldo-removebg-preview.png" class="carousel-img active"
+                    data-subtitle="Caldo misto"
+                    data-desc="Acompanha: torresmo, torrada, queijo e cebolinha."
+                    data-price="R$: 24,99">
+
+              
+                <div class="carousel-dots"></div> 
+            
+              </div>
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+
+              <div class="qty-box">
+                <button class="qty-btn minus">−</button>
+                <span class="qty-value">1</span>
+                <button class="qty-btn plus">+</button>
+              </div>
+              <a href="#" class="add-cart">
+                <svg width="20" height="20" fill="white">
+                  <use xlink:href="#meu-carrinho"></use>
+                </svg>
+              </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-lg-4 all pizza">
+            <div class="box" data-title="Bebidas">
+              <div>
+
+              <div class="img-box carousel">
+                <img src="images/bebidas.png" class="carousel-img active"
+                    data-subtitle="Selecione sua bebida"
+                    data-desc=""
+                    data-price="">
+              
+                <div class="carousel-dots"></div> 
+            
+              </div>
+
+            <div class="detail-box">
+              <h5 class="carousel-title"></h5>
+              <h6 class="carousel-subtitle">
+              </h6>
+              <p class="carousel-desc">
+              </p>
+
+              <div class="options">
+              <h6 class="carousel-price"></h6>
+
+              <button class="btn-montar" onclick="abrirBebidas()">
+                Escolher Bebida
+              </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>     
+        </div>
+    </div>
+  </section>
+<!-- MODAL MONTE SEU PRATO -->
+<div id="modalPrato" class="modal-prato">
+
+  <div class="modal-content">
+
+    <span class="fechar" onclick="fecharMontePrato()">✖</span>
+
+    <h1>Monte seu prato</h1>
+
+    <h4>Massa</h4>
+    <label class="item-option">
+      <span>Espaguete</span>
+      <span class="preco">R$ 9,00</span>
+      <input type="radio" name="massa" value="Espaguete">
+    </label>
+
+    <label class="item-option">
+      <span>Penne</span>
+      <span class="preco">R$ 9,00</span>
+      <input type="radio" name="massa" value="Penne">
+    </label>
+
+    <h4>Molho</h4>
+    <label class="item-option">
+      <span>Molho Vermelho</span>
+      <span class="preco">R$ 9,00</span>
+      <input type="radio" name="molho" value="Vermelho">
+    </label>
+
+    <label class="item-option">
+      <span>Molho Branco</span>
+      <span class="preco">R$ 7,00</span>
+      <input type="radio" name="molho" value="Branco">
+    </label>
+
+    <h4>Adicionais</h4>
+
+    <label class="item-option">
+      <span>Bacon</span>
+      <span class="preco">R$ 4,00</span>
+      <input type="checkbox" value="Bacon">
+    </label>
+    <label class="item-option">
+      <span>Calabresa</span>
+      <span class="preco">R$ 4,00</span>
+      <input type="checkbox" value="Calabresa">
+    </label>
+    <label class="item-option">
+      <span>Mussarela</span>
+      <span class="preco">R$ 4,00</span>
+      <input type="checkbox" value="Mussarela">
+    </label>
+    <label class="item-option">
+      <span>Presunto</span>
+      <span class="preco">R$ 4,00</span>
+      <input type="checkbox" value="Presunto">
+    </label>
+    <label class="item-option">
+      <span>Cheddar</span>
+      <span class="preco">R$ 5,00</span>
+      <input type="checkbox" value="Cheddar">
+    </label>
+    <label class="item-option">
+      <span>Milho</span>
+      <span class="preco">R$ 2,00</span>
+      <input type="checkbox" value="Milho">
+    </label>
+    <label class="item-option">
+      <span>Cebola</span>
+      <span class="preco">R$ 2,00</span>
+      <input type="checkbox" value="Cebola">
+    </label>
+    <label class="item-option">
+      <span>Pimentão</span>
+      <span class="preco">R$ 2,00</span>
+      <input type="checkbox" value="Pimentão">
+    </label>
+    <label class="item-option">
+      <span>Tomate</span>
+      <span class="preco">R$ 3,00</span>
+      <input type="checkbox" value="Tomate">
+    </label>
+    <label class="item-option">
+      <span>Azeitona</span>
+      <span class="preco">R$ 2,00</span>
+      <input type="checkbox" value="Azeitona">
+    </label>
+
+    <button class="btn-finalizar" onclick="adicionarPrato()">
+      Adicionar ao Pedido 
+    </button>
+
+  </div>
+
+</div>
+  
+<div id="modalBebidas" class="modal-prato">
+
+  <div class="modal-content">
+    <div class="modal-bebidas-content">
+
+    <span class="fechar" onclick="fecharBebidas()">✖</span>
+
+    <h1>Escolha sua Bebida</h1>
+
+    <!-- ================= CERVEJAS ================= -->
+
+    <!-- ================= CERVEJAS LATA 350ml ================= -->
+
+<h3>Cervejas Lata 350ml</h3>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/brahma-lata-350ml.png" class="img-bebida">
+    <div class="texto-bebida">
+      <span>Brahma 350ml</span>
+    </div>
+  </div>
+  
+  <div class="preco-acao">
+    <span class="preco">R$ 4,50</span>
+    <a class="add-cart-btn" onclick="adicionarBebidaDireto('Brahma 350ml', 4.50)">
+      <svg width="20" height="20" fill="white">
+        <use xlink:href="#meu-carrinho"></use>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/original350.png" class="img-bebida">
+    <div class="texto-bebida">
+    <span>Original 350ml</span>
+    </div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 5,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Original 350ml', 5.50)">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+  <img src="images/heineken350.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Heineken 350ml</span>
+  </div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 6,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Heineken 350ml', 6.50)">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/antartica350.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Antarctica 350ml</span>
+  </div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 4,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Antarctica 350ml', 4.50)">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/skol350.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Skol 350ml</span>
+  </div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 4,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Skol 350ml', 4.50)">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= LATÃO 473ml ================= -->
+
+<h3>Cervejas Latão 473ml</h3>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/brahma473.png" class="img-bebida">
+    <div class="texto-bebida">
+    <span>Brahma 473ml</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 5,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Brahma 473ml', 5.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/original473.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Original 473ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 6,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Original 473ml', 6.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/heineken473.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Heineken 473ml</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 7,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Heineken 473ml', 7.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+   <div class="info-bebida">
+    <img src="images/antartica473.png" class="img-bebida">  
+    <div class="texto-bebida">
+    <span>Antarctica 473ml</span>
+</div>
+   </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 5,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Antarctica 473ml', 5.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+   <div class="info-bebida">
+    <img src="images/skol473.png" class="img-bebida">  
+    <div class="texto-bebida">
+    <span>Skol 473ml</span>
+</div>
+   </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 5,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Skol 473ml', 5.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= 600ml ================= -->
+
+<h3>Cervejas 600ml</h3>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/antartica600.png" class="img-bebida">  
+    <div class="texto-bebida">
+  <span>Antarctica 600ml</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 8,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Antarctica 600ml', 8.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/antarticaboa600.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Antarctica Boa 600ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 8,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Antarctica Boa 600ml', 8.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho">
+      </use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= CERVEJA 600ML ================= -->
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/brahma600.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Brahma 600ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 8,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Brahma 600ml', 8.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/heineken600.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Heineken 600ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 12,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Heineken 600ml', 12.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/skol600.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Skol 600ml</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 8,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Skol 600ml', 8.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/Stella-600ml.png" class="img-bebida">
+    <div class="texto-bebida">
+    <span>Stella Artois 600ml</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 15,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Stella Artois 600ml', 15.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/original600.png" class="img-bebida">
+    <div class="texto-bebida">
+    <span>Original 600ml</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 9,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Original 600ml', 9.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= LONG NECK ================= -->
+
+<h3>Long Neck</h3>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/corona.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Corona Long Neck</span>
+</div>
+  </div>
+  <div class="preco-acao">
+  <span class="preco">R$ 8,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Corona Long Neck', 8.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/heineken.png" class="img-bebida">
+    <div class="texto-bebida">
+    <span>Heineken Long Neck</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 8,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Heineken Long Neck', 8.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/heineken0.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Heineken Zero Long Neck</span>
+</div>
+  </div>
+
+  <div class="preco-acao">
+  <span class="preco">R$ 8,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Heineken Zero Long Neck', 8.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/heinekenshot.png" class="img-bebida">
+  <div class="texto-bebida">
+    <span>Heineken Shot</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 6,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Heineken Shot', 6.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= REFRIGERANTES LATA 350ML ================= -->
+
+<h3>Refrigerantes Lata 350ml</h3>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/cocalata.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Coca-Cola 350ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola 350ml', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+  <div class="info-bebida">
+    <img src="images/cocalata0.png" class="img-bebida"> 
+  <div class="texto-bebida">
+    <span>Coca-Cola Zero 350ml</span>
+</div>
+  </div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola Zero 350ml', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/fantalata.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Fanta Laranja 350ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Fanta Laranja 350ml', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/fantauvalata.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Fanta Uva 350ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Fanta Uva 350ml', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/antarticalata.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Guaraná Antarctica 350ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Guaraná Antarctica 350ml', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/guarana0.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Guaraná Antarctica Zero 350ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Guaraná Antarctica Zero 350ml', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= REFRIGERANTES 600ML ================= -->
+
+<h3>Refrigerantes 600ml</h3>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/coca600.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Coca-Cola 600ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 6,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola 600ml', 6.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/coca0600.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Coca-Cola Zero 600ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 6,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola Zero 600ml', 6.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= REFRIGERANTES 1L ================= -->
+
+<h3>Refrigerantes 1L</h3>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/coca1.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Coca-Cola 1L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 8,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola 1L', 8.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/coca01.png" class="img-bebida">    
+  <div class="texto-bebida">
+    <span>Coca-Cola Zero 1L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 8,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola Zero 1L', 8.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/guarana1.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Guaraná Antarctica 1L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 7,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Guaraná Antarctica 1L', 0.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= REFRIGERANTES 2L ================= -->
+
+<h3>Refrigerantes 2L</h3>
+
+<div class="item-bebida">
+ <div class="info-bebida">
+    <img src="images/coca2.png" class="img-bebida"> 
+  <div class="texto-bebida">
+    <span>Coca-Cola 2L</span>
+</div>
+ </div>
+  
+ <div class="preco-acao">
+ <span class="preco">R$ 12,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola 2L', 12.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/coca02.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Coca-Cola Zero 2L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 12,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Coca-Cola Zero 2L', 12.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/guarana2.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Guaraná Antarctica 2L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 11,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Guaraná Antarctica 2L', 11.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/guarana20.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Guaraná Antarctica Zero 2L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 11,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Guaraná Antarctica Zero 2L', 11.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/sprite2.png" class="img-bebida">   
+  <div class="texto-bebida">
+  <span>Sprite 2L</span>
+</div>
+</div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 10,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Sprite 2L', 10.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/sprite2.png" class="img-bebida">   
+  <div class="texto-bebida">
+  <span>Sprite Zero 2L</span>
+</div>
+</div>
+  
+  <div class="preco-acao">
+  <span class="preco">R$ 10,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Sprite Zero 2L', 10.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/mineiro2.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Guaraná Mineiro 2L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 9,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Guaraná Mineiro 2L', 9.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/mineiro20.png" class="img-bebida">  
+  <div class="texto-bebida">
+    <span>Guaraná Mineiro Zero 2L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 9,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Guaraná Mineiro Zero 2L', 9.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= ÁGUA ================= -->
+
+<h3>Água</h3>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/agua.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Água 1,5l</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 5,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Água 1,5l', 5.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/agua.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Água 500ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 2,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Água 500ml', 2.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/aguag.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>Água com Gás 500ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Água com Gás 500ml', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<!-- ================= OUTROS ================= -->
+
+<h3>Outros</h3>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/h2o.png" class="img-bebida">   
+  <div class="texto-bebida">
+    <span>H2O Limão 500ml</span>
+</div>
+</div>
+ 
+<div class="preco-acao">
+<span class="preco">R$ 5,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('H2O Limão 500ml', 5.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/limoneto.png" class="img-bebida">    
+  <div class="texto-bebida">
+    <span>H2O Limoneto 500ml</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 5,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('H2O Limoneto 500ml', 5.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/dellvaleuva.png" class="img-bebida">    
+  <div class="texto-bebida">
+    <span>Del Valle Uva 1L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 8,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Del Valle Uva 1L', 8.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/dellvalepessego.png" class="img-bebida">    
+  <div class="texto-bebida">
+    <span>Del Valle Pêssego 1L</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 8,50</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Del Valle Pêssego 1L', 8.50)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/kapouva.png" class="img-bebida">    
+  <div class="texto-bebida">
+    <span>Kapo Uva</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Kapo Uva', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+
+<div class="item-bebida">
+<div class="info-bebida">
+    <img src="images/kapomorango.png" class="img-bebida">    
+  <div class="texto-bebida">
+    <span>Kapo Morango</span>
+</div>
+</div>
+  
+<div class="preco-acao">
+<span class="preco">R$ 4,00</span>
+  <a class="add-cart" onclick="adicionarBebidaDireto('Kapo Morango', 4.00)" class="add-cart">
+    <svg width="20" height="20" fill="white">
+      <use xlink:href="#meu-carrinho"></use>
+    </svg>
+  </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- end food section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 footer-col">
+          <div class="footer_contact">
+            <div class="contact_link_box">
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>
+                  demo@gmail.com
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <div class="footer_detail">
+            <a href="" class="footer-logo">
+              NaBrasa
+            </a>
+            <div class="footer_social">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-pinterest" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <h4>
+            Opening Hours
+          </h4>
+          <p>
+            Everyday
+          </p>
+          <p>
+            10.00 Am -10.00 Pm
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- end footer section -->
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <!-- isotope js -->
+  <script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+  <!-- nice select -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+</body>
+
+</html>
