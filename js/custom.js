@@ -5,16 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.box').forEach(box => {
 
-    let qty = 1;
+    let qty = 0;
 
     const minus = box.querySelector('.minus');
     const plus = box.querySelector('.plus');
     const value = box.querySelector('.qty-value');
 
     // valor inicial
-    box.dataset.qty = 1;
+    box.dataset.qty = 0;
 
-    if (value) value.textContent = 1;
+    if (value) value.textContent = 0;
 
     function atualizarBox() {
       if (value) value.textContent = qty;
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (minus) {
       minus.addEventListener('click', () => {
-        if (qty > 1) {
+        if (qty > 0) {
           qty--;
           atualizarBox();
         }
