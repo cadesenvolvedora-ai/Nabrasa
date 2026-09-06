@@ -1,0 +1,6 @@
+{
+  "name": "NaBrasa - O Ponto da Picanha",
+  "description": "Cardápio digital moderno, sistema de pedidos online via WhatsApp e personalização de pratos e espetos do NaBrasa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
